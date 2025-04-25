@@ -12,17 +12,28 @@ if option == 1:
     position = 0
     decimal = 0
 
-    while binario > 0:
-        #extrae el ultimo dígito
-        num = binario % 10
-        #quita del número el ultimo dígito, para que el while no sea infinito.
-        binario //= 10
-        #operación de multiplicación y suma a decimal
-        decimal += num * (2 ** position)
-        #suma la posición
-        position += 1
+    #Validación de que sea un número binario(se realizó con ayuda de la IA)
+    #Transformar int a string
+    binario_string = str(binario)
 
-    print(f"El número convertido a decimal es: {decimal}")
+    if all(c in '01' for c in binario_string):
+        #Si es un binario se activa el bucle para la conversión del num
+        while binario > 0:
+            #extrae el ultimo dígito
+            num = binario % 10
+            #quita del número el ultimo dígito, para que el while no sea infinito.
+            binario //= 10
+            #operación de multiplicación y suma a decimal
+            decimal += num * (2 ** position)
+            #suma la posición
+            position += 1
+
+        print(f"El número convertido a decimal es: {decimal}")
+
+    else:
+        print("El número ingresado no corresponde a un binario.")
+
+
 #Conversión de decimal a binario
 elif option == 2:
     #Se solicita número decimal
@@ -30,7 +41,7 @@ elif option == 2:
     position = 0  
     binario = 0
 
-
+    
     while decimal / 2 > 0:
         #calcular el resto 
         resto = decimal % 2
@@ -43,5 +54,7 @@ elif option == 2:
 
     print(f"El número convertido a binario es: {binario}")
 
+else:
+    print("La opción ingresada no existe.")
 
 
